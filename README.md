@@ -17,13 +17,17 @@ cp deepwick.json "${XDG_CONFIG_HOME:-$HOME/.config}/glow/"
 
 ## Activate
 
-Per run: `glow -s ~/.config/glow/deepwick.json README.md`.
+Per run: `glow -s "${XDG_CONFIG_HOME:-$HOME/.config}/glow/deepwick.json" README.md`.
 
-Permanently, in `${XDG_CONFIG_HOME:-$HOME/.config}/glow/glow.yml`:
+Permanently, in `${XDG_CONFIG_HOME:-$HOME/.config}/glow/glow.yml`, using the
+absolute path (glow does not expand `~` or `$VARIABLES` in `glow.yml`):
 
 ```yaml
-style: "~/.config/glow/deepwick.json"
+style: "/home/you/.config/glow/deepwick.json"
 ```
+
+`echo "style: \"${XDG_CONFIG_HOME:-$HOME/.config}/glow/deepwick.json\""` prints
+the line for your system.
 
 The file is a standard [glamour](https://github.com/charmbracelet/glamour)
 style, so other glamour-based tools that accept a style file can use it too.

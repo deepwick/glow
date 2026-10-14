@@ -83,3 +83,11 @@ def test_glow_renders_sample(tmp_path):
 
 def test_port_conventions():
     assert check_port(REPO, PALETTE.allowed_hex()) == []
+
+
+def test_readme_glow_yml_style_path_is_absolute():
+    # glow passes the glow.yml style path to glamour unexpanded, so "~" or "$VAR" fails to load.
+    readme = (REPO / "README.md").read_text(encoding="utf-8")
+    block = readme.split("```yaml\n", 1)[1].split("```", 1)[0]
+    value = block.split("style:", 1)[1].strip().strip('"')
+    assert value.startswith("/") and "~" not in value and "$" not in value, value
