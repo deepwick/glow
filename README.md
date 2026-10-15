@@ -11,22 +11,24 @@ Deepwick colors for [Glow](https://github.com/charmbracelet/glow), the terminal 
 ## Install
 
 ```sh
-mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}/glow"
-cp deepwick.json "${XDG_CONFIG_HOME:-$HOME/.config}/glow/"
+mkdir -p ~/.config/glow
+cp deepwick.json ~/.config/glow/
 ```
+
+If you set `XDG_CONFIG_HOME`, use that instead of `~/.config`.
 
 ## Activate
 
-Per run: `glow -s "${XDG_CONFIG_HOME:-$HOME/.config}/glow/deepwick.json" README.md`.
+Per run: `glow -s ~/.config/glow/deepwick.json README.md` (leave `~` unquoted so the shell expands it).
 
-Permanently, in `${XDG_CONFIG_HOME:-$HOME/.config}/glow/glow.yml`, using the
+Permanently, in `~/.config/glow/glow.yml`, using the
 absolute path (glow does not expand `~` or `$VARIABLES` in `glow.yml`):
 
 ```yaml
 style: "/home/you/.config/glow/deepwick.json"
 ```
 
-`echo "style: \"${XDG_CONFIG_HOME:-$HOME/.config}/glow/deepwick.json\""` prints
+`echo "style: \"$HOME/.config/glow/deepwick.json\""` prints
 the line for your system.
 
 The file is a standard [glamour](https://github.com/charmbracelet/glamour)
